@@ -102,7 +102,7 @@ const ImageGallary = () => {
   const uploadButton = (
     <div>
       <PlusOutlined />
-      <div style={{marginTop: 8}} onChange={handleChange}>
+      <div style={{marginTop: 8}} >
         Upload New Image
       </div>
     </div>
