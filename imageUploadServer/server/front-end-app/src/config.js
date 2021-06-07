@@ -5,7 +5,7 @@
  export const hostname = () => {
     //  development host key
     
-      return "http://localhost:3000";
+      return "https://image-gallery-with-google.herokuapp.com";
     
   };
   
