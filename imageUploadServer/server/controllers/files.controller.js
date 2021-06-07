@@ -24,8 +24,8 @@ exports.uploadImage = async (req, res) => {
     extension: extension,
     attachment: `/files/${req.file.filename}`,
     attachmentPath: req.file.path,
-    userName: JSON.parse(req.body.param)?.userInfo?.userName,
-    imageLocation: JSON.parse(req.body.param)?.userInfo?.location,
+    userName: req.body?.param && JSON.parse(req.body?.param)?.userInfo?.userName,
+    imageLocation: req.body?.param && JSON.parse(req.body?.param)?.userInfo?.location,
   });
   userImages
     .save()

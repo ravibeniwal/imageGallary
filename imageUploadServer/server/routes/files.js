@@ -6,7 +6,8 @@ var router = express.Router({ mergeParams: true });
 const controller = require("../controllers/files.controller");
 var { mediaHost } = require("../config");
 const multer = require("multer");
-const { uuid } = require('uuidv4');
+const { v4: uuid_v4 } = require('uuid');
+
 var filename = "";
 
 const storage = multer.diskStorage({
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
     var dir = "images/";
     filename =
     dir+
-    uuid() +
+    uuid_v4(); +
       "." +
       file.originalname;
     cb(null, filename);

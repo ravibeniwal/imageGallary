@@ -10,7 +10,14 @@ require("dotenv").config();
 var app = express();
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
+
+
+  const allowedOrigins = ['http://127.0.0.1:8020', 'http://localhost:3001', 'http://localhost:3000'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -46,7 +53,9 @@ mongoose.connect(
   },
   (err) => {
     if (!err) {
+      console.log("Connected to MongoDb Successfully!")
     } else {
+      console.log("error in connection",err)
     }
   }
 );
