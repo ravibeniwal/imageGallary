@@ -2,8 +2,8 @@ import "./App.css";
 import "antd/dist/antd.css";
 import ImageGallary from "./ImagesGallary";
 import ImageTableView from "./ImageTableView";
-import { Button } from "antd";
-import { useState } from "react";
+import {Button} from "antd";
+import {useState} from "react";
 
 function App() {
   const [mapView, setMapView] = useState(false);
@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       {mapView ? <ImageTableView /> : <ImageGallary />}
       <Button
-      style={{margin:"20px 10px"}}
-      size="large"
-      type="primary"
+        style={{margin: "20px 10px"}}
+        size="large"
+        type="primary"
         onClick={() => {
           setMapView(!mapView);
         }}
