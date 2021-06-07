@@ -10,14 +10,11 @@ require("dotenv").config();
 var app = express();
 
 app.use(function (req, res, next) {
-
-
   const allowedOrigins = ['http://127.0.0.1:8020', 'http://localhost:3001', 'http://localhost:3000'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
   }
-
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -36,7 +33,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("uploads"));
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('front-end-app/build'));
+}
 //these are routes
 app.use("/", indexRouter);
 app.use("/files", filesRouter);
