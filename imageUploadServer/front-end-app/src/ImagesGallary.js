@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { Upload, Modal, notification } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { getAllUserImages } from "./actions/uploadImages";
-import { hostname } from "./config";
+import {Upload, Modal, notification} from "antd";
+import {PlusOutlined} from "@ant-design/icons";
+import {getAllUserImages} from "./actions/uploadImages";
+import {hostname} from "./config";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -19,49 +19,12 @@ const ImageGallary = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-2",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-3",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-4",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-xxx",
-      percent: 50,
-      name: "image.png",
-      status: "uploading",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-5",
-      name: "image.png",
-      status: "error",
-    },
-  ]);
+  const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     const data = {};
     getAllUserImages(data, (res) => {
-      notification.success({ message: "All images retrieved successfully!" });
+      notification.success({message: "All images retrieved successfully!"});
       const newFetchedData = res?.data?.imagesWithLocation?.map((image) => ({
         name: image?.originalname,
         uid: image?.id,
@@ -87,11 +50,12 @@ const ImageGallary = () => {
     );
   };
 
-  const handleChange = async ({ fileList, file }) => {
+  const handleChange = async ({fileList, file}) => {
     navigator.geolocation.getCurrentPosition(function (position) {
-    let  lat = position.coords.latitude;
-     let lang = position.coords.longitude;
+      let lat = position.coords.latitude;
+      let lang = position.coords.longitude;
 
+      // don't have api key for getting places other wise we can also add city and state
       //  getCurrentAddress(lat,lang).then((address)=>{
       //   console.log("addres after getting lang is here",address);
       //   })
@@ -100,7 +64,7 @@ const ImageGallary = () => {
         attachmentType: "image",
         userInfo: {
           userName: "RaviBeniwal",
-          location: { lat: lat, lang: lang },
+          location: {lat: lat, lang: lang},
         },
       };
 
@@ -138,18 +102,18 @@ const ImageGallary = () => {
   const uploadButton = (
     <div>
       <PlusOutlined />
-      <div style={{ marginTop: 8 }} onChange={handleChange}>
+      <div style={{marginTop: 8}} onChange={handleChange}>
         Upload New Image
       </div>
     </div>
   );
   return (
     <>
-    <h1 style={{padding:'20px 10px'}}>Upload new image in gallery</h1>
+      <h1 style={{padding: "20px 10px"}}>Upload new image in gallery</h1>
       <Upload
         listType="picture-card"
         fileList={fileList}
-        showUploadList={{ showRemoveIcon: false }}
+        showUploadList={{showRemoveIcon: false}}
         onPreview={handlePreview}
         onChange={handleChange}
         onRemove={() => {}}
@@ -162,7 +126,7 @@ const ImageGallary = () => {
         footer={null}
         onCancel={handleCancel}
       >
-        <img alt="example" style={{ width: "100%" }} src={previewImage} />
+        <img alt="example" style={{width: "100%"}} src={previewImage} />
       </Modal>
     </>
   );

@@ -1,10 +1,8 @@
 const UserImages = require("../models/userImages.model");
-var { promisify } = require("util");
+var {promisify} = require("util");
 var sizeOf = promisify(require("image-size"));
 
 exports.uploadImage = async (req, res) => {
-  console.log("data is here", req);
-
   let width = 0;
   let height = 0;
   // this function is for finding the image width and height
@@ -12,7 +10,6 @@ exports.uploadImage = async (req, res) => {
     .then((dimensions) => {
       width = dimensions.width;
       height = dimensions.height;
-      console.log(dimensions.width, dimensions.height);
     })
     .catch((err) => console.error(err));
 
@@ -30,15 +27,13 @@ exports.uploadImage = async (req, res) => {
     userName: JSON.parse(req.body.param)?.userInfo?.userName,
     imageLocation: JSON.parse(req.body.param)?.userInfo?.location,
   });
-
   userImages
     .save()
     .then((data) => {
       res.status(200).json(data);
     })
     .catch((err) => {
-      console.log("err", err);
-      res.status(500).json({ message: err });
+      res.status(500).json({message: err});
     });
 };
 
@@ -52,6 +47,6 @@ exports.getImagesDataWithUserLocation = (req, res) => {
       res.status(200).json(response);
     })
     .catch((err) => {
-      res.status(500).json({ message: err });
+      res.status(500).json({message: err});
     });
 };

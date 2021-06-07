@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Table, Tag, Space, notification } from "antd";
+import React, {useEffect, useState} from "react";
+import {Table, Tag, Space, notification} from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import { hostname } from "./config";
-import { getAllUserImages } from "./actions/uploadImages";
+import {hostname} from "./config";
+import {getAllUserImages} from "./actions/uploadImages";
 import SimpleMap from "./simpleMap";
 
 export default function ImageTableView() {
@@ -12,17 +12,17 @@ export default function ImageTableView() {
   useEffect(() => {
     const data = {};
     getAllUserImages(data, (res) => {
-      notification.success({ message: "All images retrieved successfully!" });
+      notification.success({message: "All images retrieved successfully!"});
       const newFetchedData = res?.data?.imagesWithLocation?.map((image) => ({
         name: image?.originalName,
         uid: image?.id,
         url: hostname() + image?.attachment,
         height: image?.height,
         width: image?.width,
-        size:image?.size,
+        size: image?.size,
         location: image?.location,
         userName: image?.userName,
-        imageLocation:image?.imageLocation
+        imageLocation: image?.imageLocation,
       }));
       setFileList(newFetchedData);
     });
@@ -36,7 +36,7 @@ export default function ImageTableView() {
       render: (text, record) => (
         <>
           <Avatar src={record?.url} />
-          <p style={{paddingLeft:'5px'}}>{text}</p>
+          <p style={{paddingLeft: "5px"}}>{text}</p>
         </>
       ),
     },
@@ -51,24 +51,24 @@ export default function ImageTableView() {
       key: "width",
     },
     {
-      title: "height",
+      title: "Height",
       key: "height",
       dataIndex: "height",
     },
     {
-      title: "location",
+      title: "Location",
       key: "location",
       dataIndex: "imageLocation",
       render: (location) => {
-      
         return (
           <>
-          <Tag color="green" key={1}>
-            {location?.lat}
-          </Tag>
+            <Tag color="green" key={1}>
+              {location?.lat}
+            </Tag>
             <Tag color="volcano" key={2}>
-          {location?.lang}
-          </Tag></>
+              {location?.lang}
+            </Tag>
+          </>
         );
       },
     },
@@ -94,9 +94,14 @@ export default function ImageTableView() {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a  onClick={()=>{
-            setMapData(record)
-          }}>View in Map</a>
+          <p
+            style={{color: "blue", cursor: "pointer"}}
+            onClick={() => {
+              setMapData(record);
+            }}
+          >
+            View in Map
+          </p>
         </Space>
       ),
     },
@@ -104,7 +109,7 @@ export default function ImageTableView() {
   return (
     <div>
       <Table columns={columns} dataSource={fileList} />
-     { mapData && <SimpleMap mapData={mapData}/>}
+      {mapData && <SimpleMap mapData={mapData} />}
     </div>
   );
 }

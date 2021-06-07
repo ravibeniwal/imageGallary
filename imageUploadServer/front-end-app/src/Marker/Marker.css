@@ -1,30 +1,23 @@
-
 .marker {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 38px;
-    height: 48px;
-    /* background-color: #000; */
-    border: 2px solid #fff;
-    border-radius: 100%;
-    user-select: none;
-    transform: translate(-50%, -50%);
-    /* &:hover {
-      z-index: 1;
-    } */
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38px;
+  height: 48px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
 
-  body,
+body,
 html {
   height: 100%;
-}
-body {
-  /* background: #2f2f2f; */
 }
 .pin {
   width: 50px;
   height: 50px;
+  border: #fff;
   border-radius: 50% 50% 50% 0;
   background-size: contain;
   position: absolute;
@@ -53,7 +46,7 @@ body {
   animation-duration: 1s;
 }
 .pin:after {
-  content: '';
+  content: "";
   width: 14px;
   height: 14px;
   margin: 8px 0 0 8px;
@@ -62,7 +55,7 @@ body {
   border-radius: 50%;
 }
 .pulse {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   height: 14px;
   width: 14px;

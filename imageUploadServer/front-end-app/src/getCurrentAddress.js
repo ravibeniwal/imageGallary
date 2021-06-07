@@ -1,6 +1,5 @@
 import Geocode from "react-geocode";
 
-// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
 // set response language. Defaults to english.
@@ -49,23 +48,9 @@ export const getCurrentAddress = (lat, lang) => {
           }
         }
       }
-      console.log("fgfhdj", city, state, country);
-      console.log(address);
-      // return(address,city, state, country)
     },
     (error) => {
       console.error(error);
     }
   );
 };
-
-// Get latitude & longitude from address.
-Geocode.fromAddress("Eiffel Tower").then(
-  (response) => {
-    const { lat, lng } = response.results[0].geometry.location;
-    console.log(lat, lng);
-  },
-  (error) => {
-    console.error(error);
-  }
-);
