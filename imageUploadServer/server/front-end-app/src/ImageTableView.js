@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {Table, Tag, Space, notification} from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Tag, Space, notification, Row, Col } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import {hostname} from "./config";
-import {getAllUserImages} from "./actions/uploadImages";
+import { hostname } from "./config";
+import { getAllUserImages } from "./actions/uploadImages";
 import SimpleMap from "./simpleMap";
 
 export default function ImageTableView() {
@@ -12,7 +12,7 @@ export default function ImageTableView() {
   useEffect(() => {
     const data = {};
     getAllUserImages(data, (res) => {
-      notification.success({message: "All images retrieved successfully!"});
+      notification.success({ message: "All images retrieved successfully!" });
       const newFetchedData = res?.data?.imagesWithLocation?.map((image) => ({
         name: image?.originalName,
         uid: image?.id,
@@ -35,8 +35,8 @@ export default function ImageTableView() {
       key: "name",
       render: (text, record) => (
         <>
-          <Avatar src={record?.url} />
-          <p style={{paddingLeft: "5px"}}>{text}</p>
+         <div style={{display:'flex'}}> <Avatar src={record?.url} />
+          <p style={{ paddingLeft: "5px" }}>{text}</p></div>
         </>
       ),
     },
@@ -95,7 +95,7 @@ export default function ImageTableView() {
       render: (text, record) => (
         <Space size="middle">
           <p
-            style={{color: "blue", cursor: "pointer"}}
+            style={{ color: "blue", cursor: "pointer" }}
             onClick={() => {
               setMapData(record);
             }}
@@ -108,8 +108,8 @@ export default function ImageTableView() {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={fileList} />
-      {mapData && <SimpleMap mapData={mapData} />}
+          <Table columns={columns} dataSource={fileList} />
+            <SimpleMap mapData={mapData} />
     </div>
   );
 }

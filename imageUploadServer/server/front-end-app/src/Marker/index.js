@@ -7,7 +7,8 @@ const Marker = (props) => {
     <>
       <div style={{backgroundImage: `url("${url}")`}} class="pin"></div>
       <div class="pulse"></div>
-      <h2 style={{padding: "12px 0px"}}>{name}</h2>
+      <h2 style={{padding: "43px 0px",color: 'rgb(255 255 255 / 85%)',
+    }}>{name}</h2>
     </>
   );
 };

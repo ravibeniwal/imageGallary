@@ -6,9 +6,11 @@ const SimpleMap = (props) => {
   const {mapData} = props;
 
   return (
+    <div>
     <div style={{height: "40vh", width: "100%"}}>
       <GoogleMapReact
-        bootstrapURLKeys={{key: "AIzaSyAPFj9KcwpmM-g0XaMRZC_dXvixXJMzA4I"}}
+        bootstrapURLKeys={{key: "AIzaSyAX8EfoQNXvjcBsTuMw9uNEUd86sz7uD3c"}}
+        
         center={{
           lat: mapData?.imageLocation?.lat || 59.955413,
           lng: mapData?.imageLocation?.lang || 30.337844,
@@ -24,6 +26,7 @@ const SimpleMap = (props) => {
         />
       </GoogleMapReact>
     </div>
+ </div>
   );
 };
 
