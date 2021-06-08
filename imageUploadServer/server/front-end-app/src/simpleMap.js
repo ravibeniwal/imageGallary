@@ -9,7 +9,7 @@ const SimpleMap = (props) => {
     <div>
     <div style={{height: "40vh", width: "100%"}}>
       <GoogleMapReact
-        bootstrapURLKeys={{key: "AIzaSyAX8EfoQNXvjcBsTuMw9uNEUd86sz7uD3c"}}
+        bootstrapURLKeys={{key: ""}}
         
         center={{
           lat: mapData?.imageLocation?.lat || 59.955413,
